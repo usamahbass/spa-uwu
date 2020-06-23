@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SPA Learning</title>
     <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#00897B" />
   </head>
   <body>
     <!-- Navigasi -->
@@ -22,5 +24,21 @@
     <div class="container" id="body-content"></div>
     <script src="js/materialize.min.js"></script>
     <script src="js/nav.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(() => {
+              console.log("service worker has been register");
+            })
+            .catch(() => {
+              console.log("registration service worker failed");
+            });
+        });
+      } else {
+        console.log("service worker not supported on this browser");
+      }
+    </script>
   </body>
 </html>
